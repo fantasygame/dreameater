@@ -36,11 +36,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
-<<<<<<< Updated upstream
     acts_as_follower (0.2.1)
-=======
     acts_as_votable (0.10.0)
->>>>>>> Stashed changes
     addressable (2.4.0)
     arel (6.0.3)
     ast (2.2.0)
@@ -314,11 +311,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-<<<<<<< Updated upstream
   acts_as_follower
-=======
   acts_as_votable (~> 0.10.0)
->>>>>>> Stashed changes
   better_errors
   bootstrap-sass
   byebug
