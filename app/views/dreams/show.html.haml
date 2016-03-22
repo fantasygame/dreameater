@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @dream.title
+%p
+  %b Content:
+  = @dream.content
+%p
+  %b User:
+  = @dream.user
+
+= link_to 'Edit', edit_dream_path(@dream)
+\|
+= link_to 'Back', dreams_path
