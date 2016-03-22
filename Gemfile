@@ -6,7 +6,14 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
+<<<<<<< Updated upstream
 gem "acts_as_follower"
+=======
+
+gem 'acts_as_votable', '~> 0.10.0'
+
+
+>>>>>>> Stashed changes
 group :development, :test do
   gem 'byebug'
 end
