@@ -4,17 +4,17 @@ class DreamsController < ApplicationController
   # GET /dreams
   # GET /dreams.json
   def index
-    @dreams = Dream.all
+    @dreams = Dream.all.order(created_at: :desc)
   end
 
   def stalked
     followed_users = current_user.all_following
-    @dreams = Dream.where(user: followed_users)
+    @dreams = Dream.where(user: followed_users).order(created_at: :desc)
     render :index
   end
 
   def my_dreams
-    @dreams = current_user.dreams
+    @dreams = current_user.dreams.order(created_at: :desc)
     render :index
   end
 
