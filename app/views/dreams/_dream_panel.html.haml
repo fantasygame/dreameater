@@ -3,8 +3,10 @@
     = link_to dream.title, dream
     = dream.created_at.strftime('%d.%m.%Y')
     .pull-right
-      = link_to 'Edit', edit_dream_path(dream), class: "btn btn-xs btn-default"
-      = link_to 'Destroy', dream, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-xs btn-danger"
+      - if policy(dream).edit?
+        = link_to 'Edit', edit_dream_path(dream), class: "btn btn-xs btn-default"
+      - if policy(dream).destroy?
+        = link_to 'Destroy', dream, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-xs btn-danger"
   .panel-body
     = dream.content
   .panel-footer
