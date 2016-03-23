@@ -1,5 +1,5 @@
 class DreamsController < ApplicationController
-  before_action :set_dream, only: [:show, :edit, :update, :destroy]
+  before_action :set_dream, only: [:show, :edit, :update, :destroy, :like, :unlike]
 
   # GET /dreams
   # GET /dreams.json
@@ -67,10 +67,12 @@ class DreamsController < ApplicationController
 
   def like
     @dream.liked_by current_user
+    redirect_to :back
   end
 
   def unlike
     @dream.unliked_by current_user
+    redirect_to :back
   end
   private
     # Use callbacks to share common setup or constraints between actions.

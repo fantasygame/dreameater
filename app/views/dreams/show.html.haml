@@ -10,6 +10,9 @@
   %b User:
   = @dream.user
 
+= link_to 'Like', like_dream_path(@dream), method: 'put'
+= link_to 'Unlike', unlike_dream_path(@dream), method: 'put'
+
 = link_to 'Edit', edit_dream_path(@dream)
 \|
 = link_to 'Back', dreams_path
