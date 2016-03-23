@@ -7,13 +7,10 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      = link_to 'Home', root_path, class: 'navbar-brand'
-      - if current_user.present?
-        = link_to 'Sign out', destroy_user_session_path, method: 'delete', class: 'btn btn-primary'
-      - else
-        = link_to 'Sign in', new_user_session_path, class: 'btn btn-primary'
-        = link_to 'Sign up', new_user_registration_path, class: 'btn btn-primary'
-
+      = link_to 'Dreameater', root_path, class: 'navbar-brand'
     .collapse.navbar-collapse
       %ul.nav.navbar-nav
         = render 'layouts/navigation_links'
+      %ul.nav.navbar-nav.navbar-right
+        = render 'layouts/session_links'
+
