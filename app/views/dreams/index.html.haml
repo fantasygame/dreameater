@@ -19,8 +19,11 @@
         %td= link_to 'Show', dream
         %td= link_to 'Edit', edit_dream_path(dream)
         %td= link_to 'Destroy', dream, :method => :delete, :data => { :confirm => 'Are you sure?' }
-        %td= link_to 'Stalk', user_stalk_path(dream.user)
-
+        %td
+          - if current_user.following?(dream.user)
+            Following
+          - else
+            = link_to 'Stalk', user_stalk_path(dream.user)
 %br
 
 = link_to 'New Dream', new_dream_path
