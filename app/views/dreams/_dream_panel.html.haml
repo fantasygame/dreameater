@@ -15,8 +15,9 @@
       - if policy(dream).destroy?
         = link_to 'Destroy', dream, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-xs btn-danger"
   .panel-body
-    - if limited
+    - if limited && dream.content.length > 500
       = truncate(dream.content, length: 500)
+      = link_to '(more)', dream
     - else
       = dream.content
   .panel-footer
