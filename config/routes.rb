@@ -9,6 +9,6 @@ Rails.application.routes.draw do
     get :toggle_stalk
   end
 
-  root to: 'visitors#index'
+  root to: 'dreams#index'
   devise_for :users
 end
