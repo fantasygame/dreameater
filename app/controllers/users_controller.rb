@@ -1,13 +1,13 @@
 class UsersController < ApplicationController
-  def stalk
-    user_to_follow = User.find(params[:user_id])
-    current_user.follow(user_to_follow)
-    redirect_to :back, notice: "You are stalking #{user_to_follow.name}"
-  end
-
-  def unstalk
-    user_to_unfollow = User.find(params[:user_id])
-    current_user.stop_following(user_to_unfollow)
-    redirect_to :back, notice: "You are not stalking #{user_to_unfollow.name}"
+  def toggle_stalk
+    target_user = User.find(params[:user_id])
+    if current_user.following?(target_user)
+      current_user.stop_following(target_user)
+      notice = "You are not stalking #{target_user.name}"
+    else
+      current_user.follow(target_user)
+      notice = "You are stalking #{target_user.name}"
+    end
+    redirect_to :back, notice: notice
   end
 end

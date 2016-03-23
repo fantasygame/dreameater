@@ -6,8 +6,7 @@ Rails.application.routes.draw do
     end
   end
   resources :users, only: [] do
-    get :stalk
-    get :unstalk
+    get :toggle_stalk
   end
 
   root to: 'visitors#index'
