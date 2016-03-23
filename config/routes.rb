@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   resources :dreams do
     member do
-      put :like
-      put :unlike
+      put :like_toggle
     end
   end
   resources :users, only: [] do

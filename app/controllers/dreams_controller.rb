@@ -1,5 +1,5 @@
 class DreamsController < ApplicationController
-  before_action :set_dream, only: [:show, :edit, :update, :destroy, :like, :unlike]
+  before_action :set_dream, only: [:show, :edit, :update, :destroy, :like_toggle]
 
   # GET /dreams
   # GET /dreams.json
@@ -65,13 +65,12 @@ class DreamsController < ApplicationController
     end
   end
 
-  def like
-    @dream.liked_by current_user
-    redirect_to :back
-  end
-
-  def unlike
-    @dream.unliked_by current_user
+  def like_toggle
+    if @dream.get_likes.find_by(voter_id: current_user.id).present?
+      @dream.unliked_by current_user
+    else
+      @dream.liked_by current_user
+    end
     redirect_to :back
   end
   private

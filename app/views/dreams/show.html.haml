@@ -10,8 +10,10 @@
   %b User:
   = @dream.user
 = @dream.like_count
-= link_to 'Like', like_dream_path(@dream), method: 'put'
-= link_to 'Unlike', unlike_dream_path(@dream), method: 'put'
+- if @dream.get_likes.find_by(voter_id: current_user.id).present?
+  = link_to 'Unlike', like_toggle_dream_path(@dream), method: 'put'
+- else
+  = link_to 'Like', like_toggle_dream_path(@dream), method: 'put'
 
 = link_to 'Edit', edit_dream_path(@dream)
 \|
