@@ -6,34 +6,6 @@
 
 The purpose of this app is to log & share your dreams.
 
-## Features
-* signed in user can add new dream
-* dream is automatically assigned to current user (signed in user)
-* only dream owner can edit & update dream
-* user can stalk other users
-* user cas see board with all users dreams
-* user can see board with dreams of stalked users
-* user can see board of his own dreams
-* dream can be liked/disliked by other users (not dreamer)
-* dream has shown points
-* user can see top dreams of stalked users
-
-out of mvp:
-* user can set dream as hidden (not showed for other users)
-* user can add dream anonimously (dreamer name is not shown)
-* comments to dream
-* user can answer to comment as dreamer or hidden dreamer without revealing his identity
-* user can see top dreams of his own
-* user can add tags to his dreams
-* user can search for dreams by contextual search including title & description
-* user can search dreams by tags
-* user can see most popular tags
-* app is mobile friendly (for easier dream logging just after dream)
-
-idea:
-* api for mobile app
-* mobile app integrated with alarm clock (option for inserting dream after alarm goes off - fresh memory of dream)
-
 ## Technologies
 
 * Ruby on Rails 4.2.6
