@@ -9,7 +9,7 @@
 %p
   %b User:
   = @dream.user
-
+= @dream.like_count
 = link_to 'Like', like_dream_path(@dream), method: 'put'
 = link_to 'Unlike', unlike_dream_path(@dream), method: 'put'
 
