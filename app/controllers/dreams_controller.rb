@@ -25,6 +25,7 @@ class DreamsController < ApplicationController
   # POST /dreams.json
   def create
     @dream = Dream.new(dream_params)
+    @dream.user_id = current_user.id
 
     respond_to do |format|
       if @dream.save
@@ -69,6 +70,6 @@ class DreamsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def dream_params
-      params.require(:dream).permit(:title, :content, :user_id)
+      params.require(:dream).permit(:title, :content)
     end
 end
