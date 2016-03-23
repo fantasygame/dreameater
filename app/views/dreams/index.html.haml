@@ -1,29 +1,20 @@
-%h1 Listing dreams
+.container
+  %h1 Listing dreams
+  %p= link_to 'New Dream', new_dream_path, class: "btn btn-sm btn-success"
+  - @dreams.each do |dream|
+    .panel.panel-default
+      .panel-heading
+        = link_to dream.title, dream
+        .pull-right
+          = link_to 'Edit', edit_dream_path(dream), class: "btn btn-xs btn-default"
+          = link_to 'Destroy', dream, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-xs btn-danger"
+      .panel-body
+        = dream.content
+      .panel-footer
+        = dream.user class: "btn btn-xs btn-default"
+        - if current_user.following?(dream.user)
+          = link_to 'Unstalk', user_toggle_stalk_path(dream.user), class: "btn btn-xs btn-default"
+        - else
+          = link_to 'Stalk', user_toggle_stalk_path(dream.user), class: "btn btn-xs btn-default"
 
-%table
-  %thead
-    %tr
-      %th Title
-      %th Content
-      %th User
-      %th
-      %th
-      %th
 
-  %tbody
-    - @dreams.each do |dream|
-      %tr
-        %td= dream.title
-        %td= dream.content
-        %td= dream.user
-        %td= link_to 'Show', dream
-        %td= link_to 'Edit', edit_dream_path(dream)
-        %td= link_to 'Destroy', dream, :method => :delete, :data => { :confirm => 'Are you sure?' }
-        %td
-          - if current_user.following?(dream.user)
-            = link_to 'Unstalk', user_toggle_stalk_path(dream.user)
-          - else
-            = link_to 'Stalk', user_toggle_stalk_path(dream.user)
-%br
-
-= link_to 'New Dream', new_dream_path
