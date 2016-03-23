@@ -18,6 +18,11 @@ class DreamsController < ApplicationController
     render :index
   end
 
+  def top
+    @dreams = Dream.all.sort_by { |dream| -dream.get_likes.size }
+    render :index
+  end
+
   # GET /dreams/1
   # GET /dreams/1.json
   def show

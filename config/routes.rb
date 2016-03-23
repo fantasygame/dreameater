@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     collection do
       get :stalked
       get :my_dreams
+      get :top
     end
   end
   resources :users, only: [] do
