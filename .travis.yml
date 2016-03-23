@@ -1,0 +1,16 @@
+sudo: false
+language: ruby
+rvm:
+  - 2.3.0
+before_script:
+  - cp config/database.travis.yml config/database.yml
+  - psql -c 'create database dreameater_test;' -U postgres
+  - bundle exec rake db:migrate --trace
+deploy:
+  provider: heroku
+  api_key:
+    secure: G0QAijfQnLFjhn+MRzcguiaFsqe4d4Ycya0SuP4tXS1yiv6FcxtNXnxu9p0EaTXU+2Wzx4BvwffMYmZgTYF8ODzXFprkmujF2kd/+EKfgcWsnO+BHF7r77DyvMUoMuIby3iprcEF1xzFz6H1qB1ucF4Ckdvg/38HWjAU+sPlSMGTipU3wdg23SiuejiYZSHOeDwJ0F5WtF56zZhyPQxYiYdFzwj700jSsTXQLUCGOmq+HfRviTknyzmFacsIJnxZLMF3WSjXUPrUBaZxuapJ2acouFkiKITKoaI6w0f0GMs1WrEnpRO6x+AQFpqYFEmAZPZDUdL7bSddzsWuFDLyy20c+L3KUx7VH5qcgWBs6jhnKgTlXwU3BrdN1YWTGyjOpIXwSlAmXZq5SyyM5t4sXHZymebsTxkhCi3HWxcHPZFJve1Vf4po25P7ojiuCcttlCh51siXd5h4PLDNQPSkyBFZZV4C1ofK/peiaVlAfN9rlx+D2GI23bGQgJE3ZwFBzH6NPj0rEefBYvMIbjT52M/Jx8vn5ZR/KPdE1SxhahFXKlAMwPY1pot2IPqp6/HWJSC2I0K6xhvllnLX62LfYaENkHURwIe4KSWhqw+pWaYGDJRmOtZO0ZgMbEV2BMRRpC+Ln3QzMau7/ywyPFwlCFiMKGrHX2NrkdwQbxSTjIU=
+  app: dreameater
+  on:
+    repo: fantasygame/dreameater
+  run: "rake db:migrate"
