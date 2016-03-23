@@ -7,6 +7,12 @@ class DreamsController < ApplicationController
     @dreams = Dream.all
   end
 
+  def stalked
+    followed_users = current_user.all_following
+    @dreams = Dream.where(user: followed_users)
+    render :index
+  end
+
   # GET /dreams/1
   # GET /dreams/1.json
   def show

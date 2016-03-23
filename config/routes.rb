@@ -3,6 +3,9 @@ Rails.application.routes.draw do
     member do
       put :like_toggle
     end
+    collection do
+      get :stalked
+    end
   end
   resources :users, only: [] do
     get :toggle_stalk
