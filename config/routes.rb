@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     end
     collection do
       get :stalked
+      get :my_dreams
     end
   end
   resources :users, only: [] do

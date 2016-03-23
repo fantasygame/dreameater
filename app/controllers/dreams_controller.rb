@@ -13,6 +13,11 @@ class DreamsController < ApplicationController
     render :index
   end
 
+  def my_dreams
+    @dreams = current_user.dreams
+    render :index
+  end
+
   # GET /dreams/1
   # GET /dreams/1.json
   def show
