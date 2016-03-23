@@ -65,6 +65,13 @@ class DreamsController < ApplicationController
     end
   end
 
+  def like
+    @dream.liked_by current_user
+  end
+
+  def unlike
+    @dream.unliked_by current_user
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_dream
