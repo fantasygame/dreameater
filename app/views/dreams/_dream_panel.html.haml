@@ -4,10 +4,11 @@
     = dream.created_at.strftime('%d.%m.%Y')
     \-
     = dream.user class: "btn btn-xs btn-default"
-    - if current_user.following?(dream.user)
-      = link_to 'Unstalk', user_toggle_stalk_path(dream.user), class: "btn btn-xs btn-default"
-    - else
-      = link_to 'Stalk', user_toggle_stalk_path(dream.user), class: "btn btn-xs btn-default"
+    - unless current_user == dream.user
+      - if current_user.following?(dream.user)
+        = link_to 'Unstalk', user_toggle_stalk_path(dream.user), class: "btn btn-xs btn-default"
+      - else
+        = link_to 'Stalk', user_toggle_stalk_path(dream.user), class: "btn btn-xs btn-default"
     .pull-right
       - if policy(dream).edit?
         = link_to 'Edit', edit_dream_path(dream), class: "btn btn-xs btn-default"
