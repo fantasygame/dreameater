@@ -1,15 +1,18 @@
 !!!
 %html
   %head
-    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
-    %title= content_for?(:title) ? yield(:title) : 'Dreameater'
-    %meta{:name => "description", :content => "#{content_for?(:description) ? yield(:description) : 'Dreameater'}"}
-    = stylesheet_link_tag 'application', media: 'all'
-    = javascript_include_tag 'application'
-    = csrf_meta_tags
+    %meta{content: "width=device-width, initial-scale=1.0", name: "viewport"}
+      %title= content_for?(:title) ? yield(:title) : "My Application"
+      %meta{content: content_for?(:description) ? yield(:description) : "My Application", name: "description"}
+        = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+        = javascript_include_tag 'application', 'data-turbolinks-track' => true
+        = csrf_meta_tags
+        / Custom Fonts
+        %link{href: "https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css", rel: "stylesheet"}
   %body
     %header
       = render 'layouts/navigation'
-    %main{:role => "main"}
-      = render 'layouts/messages'
+    = render 'layouts/messages'
+    .container
       = yield
+    = render 'layouts/footer'
