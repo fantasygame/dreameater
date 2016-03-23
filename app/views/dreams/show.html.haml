@@ -9,11 +9,13 @@
 %p
   %b User:
   = @dream.user
-= @dream.like_count
+%span.badge{title: 'Posts'}
+  .glyphicon.glyphicon-thumbs-up
+    = @dream.like_count
 - if @dream.get_likes.find_by(voter_id: current_user.id).present?
-  = link_to 'Unlike', like_toggle_dream_path(@dream), method: 'put'
+  = link_to 'Unlike', like_toggle_dream_path(@dream), method: 'put', class: 'btn btn-default'
 - else
-  = link_to 'Like', like_toggle_dream_path(@dream), method: 'put'
+  = link_to 'Like', like_toggle_dream_path(@dream), method: 'put', class: 'btn btn-primary'
 
 = link_to 'Edit', edit_dream_path(@dream)
 \|
