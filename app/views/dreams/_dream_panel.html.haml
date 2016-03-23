@@ -2,6 +2,12 @@
   .panel-heading
     = link_to dream.title, dream
     = dream.created_at.strftime('%d.%m.%Y')
+    \-
+    = dream.user class: "btn btn-xs btn-default"
+    - if current_user.following?(dream.user)
+      = link_to 'Unstalk', user_toggle_stalk_path(dream.user), class: "btn btn-xs btn-default"
+    - else
+      = link_to 'Stalk', user_toggle_stalk_path(dream.user), class: "btn btn-xs btn-default"
     .pull-right
       - if policy(dream).edit?
         = link_to 'Edit', edit_dream_path(dream), class: "btn btn-xs btn-default"
@@ -13,18 +19,12 @@
     - else
       = dream.content
   .panel-footer
-    = dream.user class: "btn btn-xs btn-default"
-    - if current_user.following?(dream.user)
-      = link_to 'Unstalk', user_toggle_stalk_path(dream.user), class: "btn btn-xs btn-default"
+    - if dream.get_likes.find_by(voter_id: current_user.id).present?
+      = link_to 'Unlike', like_toggle_dream_path(dream), method: 'put', class: 'btn btn-xs btn-default'
     - else
-      = link_to 'Stalk', user_toggle_stalk_path(dream.user), class: "btn btn-xs btn-default"
-
-    - if @dream.get_likes.find_by(voter_id: current_user.id).present?
-      = link_to 'Unlike', like_toggle_dream_path(@dream), method: 'put', class: 'btn btn-xs btn-default'
-    - else
-      = link_to 'Like', like_toggle_dream_path(@dream), method: 'put', class: 'btn btn-xs btn-primary'
+      = link_to 'Like', like_toggle_dream_path(dream), method: 'put', class: 'btn btn-xs btn-primary'
     %span.badge{title: 'Posts'}
       .glyphicon.glyphicon-thumbs-up
-        = @dream.like_count
+        = dream.decorate.like_count
 
 
