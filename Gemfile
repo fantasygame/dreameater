@@ -8,6 +8,7 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem "acts_as_follower"
 gem 'acts_as_votable', '~> 0.10.0'
+gem 'draper', '~> 1.3'
 group :development, :test do
   gem 'byebug'
 end
