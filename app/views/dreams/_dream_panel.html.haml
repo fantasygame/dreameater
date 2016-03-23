@@ -8,7 +8,10 @@
       - if policy(dream).destroy?
         = link_to 'Destroy', dream, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-xs btn-danger"
   .panel-body
-    = dream.content
+    - if limited
+      = truncate(dream.content, length: 500)
+    - else
+      = dream.content
   .panel-footer
     = dream.user class: "btn btn-xs btn-default"
     - if current_user.following?(dream.user)

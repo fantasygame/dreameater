@@ -2,4 +2,4 @@
   %h1 Listing dreams
   %p= link_to 'New Dream', new_dream_path, class: "btn btn-sm btn-success"
   - @dreams.each do |dream|
-    = render partial: "dream_panel", locals: { dream: dream }
+    = render partial: "dream_panel", locals: { dream: dream, limited: true }
