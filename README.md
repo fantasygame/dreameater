@@ -15,8 +15,6 @@ The purpose of this app is to log & share your dreams.
 * Bootstrap 3
 * Devise authentication
 * Pundit authorization
-* Continous deployment with Travis and Heroku
-* Code Climate quality check
 
 ## Setup
 ### Clone repository
