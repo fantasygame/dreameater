@@ -19,7 +19,7 @@ class DreamsController < ApplicationController
   end
 
   def top
-    @dreams = Dream.visible.sort_by { |dream| -dream.get_likes.size }
+    @dreams = Dream.visible(current_user).sort_by { |dream| -dream.get_likes.size }
     render :index
   end
 
