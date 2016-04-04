@@ -4,7 +4,7 @@ class DreamsController < ApplicationController
   # GET /dreams
   # GET /dreams.json
   def index
-    @dreams = Dream.all.order(created_at: :desc)
+    @dreams = Dream.visible(current_user).order(created_at: :desc)
   end
 
   def stalked

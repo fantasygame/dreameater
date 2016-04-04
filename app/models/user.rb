@@ -6,6 +6,15 @@ class User < ActiveRecord::Base
 
   has_many :dreams
 
+  def accessible_dreams(scope)
+    if self.admin?
+      scope
+    else
+      scope.where('hidden=? OR user_id=?', 'false', self.id)
+    end
+  end
+
+
   def set_default_role
     self.role ||= :user
   end
