@@ -97,6 +97,6 @@ class DreamsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def dream_params
-      params.require(:dream).permit(:title, :content)
+      params.require(:dream).permit(:title, :content, :hidden)
     end
 end
