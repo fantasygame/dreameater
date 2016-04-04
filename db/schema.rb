@@ -20,9 +20,9 @@ ActiveRecord::Schema.define(version: 20160404075441) do
     t.string   "title"
     t.text     "content"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean  "hidden"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "hidden",     default: false
   end
 
   add_index "dreams", ["user_id"], name: "index_dreams_on_user_id", using: :btree
