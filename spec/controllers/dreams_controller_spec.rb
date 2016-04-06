@@ -1,42 +1,41 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe DreamsController, type: :controller do
-  
-  describe '.index' do
+  describe ".index" do
     before do
-     @user = create(:user, email: 'dream_test@example.com')
-     @dream = create(:dream, user: @user)
-     @hidden_dream = create(:dream, user: @user, hidden: true)
+      @user = create(:user, email: "dream_test@example.com")
+      @dream = create(:dream, user: @user)
+      @hidden_dream = create(:dream, user: @user, hidden: true)
     end
 
-    context 'admin logged in' do
+    context "admin logged in" do
       let(:admin) { create(:user, role: :admin) }
       before do
         sign_in(admin)
       end
-      it 'index all dreams' do
+      it "index all dreams" do
         get :index
         expect(assigns(:dreams)).to include(@dream, @hidden_dream)
       end
     end
-    
-    context 'user logged in' do
+
+    context "user logged in" do
       before do
         sign_in(@user)
       end
-      it 'index owned hidden dreams' do
+      it "index owned hidden dreams" do
         get :index
         expect(assigns(:dreams)).to include(@hidden_dream)
         expect(assigns(:dreams)).to include(@dream)
       end
     end
 
-    context 'other user logged in' do
-      let(:other_user) { create(:user, email: 'dream_test2@example.com') }
+    context "other user logged in" do
+      let(:other_user) { create(:user, email: "dream_test2@example.com") }
       before do
         sign_in(other_user)
       end
-      it 'dont index other users hidden dreams' do
+      it "dont index other users hidden dreams" do
         get :index
         expect(assigns(:dreams)).to_not include(@hidden_dream)
         expect(assigns(:dreams)).to include(@dream)

@@ -1,19 +1,18 @@
 class User < ActiveRecord::Base
   enum role: [:user, :vip, :admin]
-  after_initialize :set_default_role, :if => :new_record?
+  after_initialize :set_default_role, if: :new_record?
   acts_as_followable
   acts_as_follower
 
   has_many :dreams
 
   def accessible_dreams(scope)
-    if self.admin?
+    if admin?
       scope
     else
-      scope.where('hidden=? OR user_id=?', 'false', self.id)
+      scope.where("hidden=? OR user_id=?", "false", id)
     end
   end
-
 
   def set_default_role
     self.role ||= :user
