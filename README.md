@@ -83,3 +83,4 @@ MIT
 * Dawid Roszkiewicz
 * Małgorzata Grobelska
 * Jakub Kubacki
+* Paweł Bielicki
