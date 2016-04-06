@@ -55,6 +55,10 @@ We use RSpec 3 for backend testing.
 * Make your best to write tests for your code. You can check code coverage in codeclimate.
 * We don't like merge commits. Use rebase. `bash git config --global branch.autosetuprebase always `
 
+## Deployment
+To deploy to production (heroku) just merge master to production branch via
+`git push origin master:production`
+
 ## Contributing
 
 If you make improvements to this application, please share with others.

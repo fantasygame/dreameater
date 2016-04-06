@@ -1,5 +1,4 @@
 class DreamPolicy < ApplicationPolicy
-
   def update?
     user == record.user
   end
