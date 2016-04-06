@@ -1,0 +1,19 @@
+.panel.panel-default
+  .panel-heading
+    \Comments
+  .panel-body
+    %p= link_to 'New Comment', new_dream_dream_comment_path(dream_id: dream), class: "btn btn-sm btn-success"
+    - dream.dream_comments.order(created_at: :desc).each do |comment|
+      .panel.panel-default
+        .panel-heading
+          = comment.user.name ? comment.user.name : comment.user.email
+          \ wrote at
+          = comment.created_at
+          \:
+        .panel-body
+          - if limited && comment.content.length > 500
+            = truncate(comment.content, length: 500)
+            = link_to '(more)', comment
+          - else
+            = comment.content
+    

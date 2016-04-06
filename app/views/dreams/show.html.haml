@@ -1,5 +1,5 @@
 %p= render partial: "dream_panel", locals: { dream: @dream, limited: false }
+%p= render partial: "dream_comments_panel", locals: { dream: @dream, limited: false }
 
 
-%p= link_to 'New Comment', new_dream_dream_comment_path(dream_id: @dream), class: "btn btn-sm btn-success"
 = link_to 'Back', dreams_path, class: 'btn btn-default'
