@@ -22,7 +22,7 @@ Rails.application.configure do
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  config.serve_static_files = ENV["RAILS_SERVE_STATIC_FILES"].present?
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
@@ -81,11 +81,10 @@ Rails.application.configure do
     password: Rails.application.secrets.email_provider_password
   }
   # ActionMailer Config
-  config.action_mailer.default_url_options = { :host => Rails.application.secrets.domain_name }
+  config.action_mailer.default_url_options = { host: Rails.application.secrets.domain_name }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false
-
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new

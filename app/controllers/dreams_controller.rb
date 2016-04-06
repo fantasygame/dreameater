@@ -46,7 +46,7 @@ class DreamsController < ApplicationController
 
     respond_to do |format|
       if @dream.save
-        format.html { redirect_to @dream, notice: 'Dream was successfully created.' }
+        format.html { redirect_to @dream, notice: "Dream was successfully created." }
         format.json { render :show, status: :created, location: @dream }
       else
         format.html { render :new }
@@ -61,7 +61,7 @@ class DreamsController < ApplicationController
     authorize @dream
     respond_to do |format|
       if @dream.update(dream_params)
-        format.html { redirect_to @dream, notice: 'Dream was successfully updated.' }
+        format.html { redirect_to @dream, notice: "Dream was successfully updated." }
         format.json { render :show, status: :ok, location: @dream }
       else
         format.html { render :edit }
@@ -76,7 +76,7 @@ class DreamsController < ApplicationController
     authorize @dream
     @dream.destroy
     respond_to do |format|
-      format.html { redirect_to dreams_url, notice: 'Dream was successfully destroyed.' }
+      format.html { redirect_to dreams_url, notice: "Dream was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -89,14 +89,16 @@ class DreamsController < ApplicationController
     end
     redirect_to :back
   end
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_dream
-      @dream = Dream.find(params[:id]).decorate
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def dream_params
-      params.require(:dream).permit(:title, :content, :hidden)
-    end
+  private
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_dream
+    @dream = Dream.find(params[:id]).decorate
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def dream_params
+    params.require(:dream).permit(:title, :content, :hidden)
+  end
 end
