@@ -1,4 +1,8 @@
 # Dreameater
+![alt tag](http://content.screencast.com/users/jakub.kubacki/folders/Jing/media/bf205434-7870-49f1-9562-b5213ddc015f/00000082.png)
+
+[![](http://img.shields.io/travis/fantasygame/dreameater.svg?style=flat-square)](https://travis-ci.org/fantasygame/dreameater)
+[![](http://img.shields.io/codeclimate/github/fantasygame/dreameater.svg?style=flat-square)](https://codeclimate.com/github/fantasygame/dreameater)
 
 ## [Check out our app](http://dreameater.herokuapp.com/)
 
