@@ -73,10 +73,6 @@ If you add functionality to this application, create an alternative
 implementation, or build an application that is similar, please contact
 me and I’ll add a note to the README so that others can find your work.
 
-## License
-
-MIT
-
 ## Authors
 
 * Adam Roszkiewicz
