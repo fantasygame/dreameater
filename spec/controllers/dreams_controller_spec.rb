@@ -35,7 +35,7 @@ RSpec.describe DreamsController, type: :controller do
       end
       it "dont index other users hidden dreams" do
         get :index
-        expect(assigns(:dreams)).to_not include(hidden_dream)
+        expect(assigns(:dreams)).not_to include(hidden_dream)
         expect(assigns(:dreams)).to include(dream)
       end
     end
