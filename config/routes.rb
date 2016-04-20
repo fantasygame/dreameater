@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       get :top
     end
   end
+  resources :dream_comments
   resources :users, only: [] do
     get :toggle_stalk
   end

@@ -1,0 +1,9 @@
+
+= simple_form_for(@dream_comment) do |f|
+  = f.error_notification
+  .form-inputs
+    = f.input :content
+    = f.hidden_field :dream_id, value: @dream.id
+  .form-actions
+    = f.button :submit
+

@@ -1,0 +1,25 @@
+.panel.panel-default
+  .panel-heading
+    \Comments
+  .panel-body
+    %p= link_to 'New Comment', new_dream_comment_path(dream_id: dream), class: "btn btn-sm btn-success"
+    - dream.dream_comments.order(created_at: :desc).each do |comment|
+      .panel.panel-default
+        .panel-heading
+          = comment.user.name ? comment.user.name : comment.user.email
+          \ wrote at
+          = comment.created_at
+          \:
+
+          .pull-right
+            - if policy(comment).edit?
+              = link_to 'Edit', edit_dream_comment_path(dream_id: comment.dream_id, id: comment.id), class: "btn btn-xs btn-default"
+            - if policy(comment).destroy?
+              = link_to 'Destroy', dream_comment_path(dream_id: comment.dream_id, id: comment.id),
+              :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-xs btn-danger"
+        .panel-body
+          - if limited && comment.content.length > 500
+            = truncate(comment.content, length: 500)
+            = link_to '(more)', comment
+          - else
+            = comment.content

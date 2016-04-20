@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160404075441) do
+ActiveRecord::Schema.define(version: 20160405101829) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "dream_comments", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "dream_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "dream_comments", ["dream_id"], name: "index_dream_comments_on_dream_id", using: :btree
+  add_index "dream_comments", ["user_id"], name: "index_dream_comments_on_user_id", using: :btree
 
   create_table "dreams", force: :cascade do |t|
     t.string   "title"
@@ -75,5 +86,7 @@ ActiveRecord::Schema.define(version: 20160404075441) do
   add_index "votes", ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope", using: :btree
   add_index "votes", ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope", using: :btree
 
+  add_foreign_key "dream_comments", "dreams"
+  add_foreign_key "dream_comments", "users"
   add_foreign_key "dreams", "users"
 end
