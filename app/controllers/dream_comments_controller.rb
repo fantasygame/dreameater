@@ -1,5 +1,5 @@
 class DreamCommentsController < ApplicationController
-  before_action :set_dream, only: [:new, :create, :index, :show, :edit, :update]
+  before_action :set_dream, only: [:new, :index, :show, :edit, :update, :destroy]
   before_action :set_dream_comment, only: [:show, :edit, :update, :destroy]
 
   def new
@@ -7,14 +7,15 @@ class DreamCommentsController < ApplicationController
   end
 
   def create
-    @dream.dream_comments.build(dream_comment_parrams.merge({user_id: current_user.id}))
+    @dream_comment = DreamComment.new(dream_comment_params.merge({user_id: current_user.id}))
+    @dream = Dream.where(id: dream_comment_params[:dream_id]).first
     respond_to do |format|
-      if @dream.save
-        format.html { redirect_to @dream, notice: 'Comment was successfully created.' }
-        format.json { render :show, status: :created, location: @dream }
+      if @dream_comment.save
+        format.html { redirect_to @dream_comment.dream, notice: 'Comment was successfully created.' }
+        format.json { render :show, status: :created, location: @dream_comment.dream }
       else
         format.html { render :new }
-        format.json { render json: @dream.errors, status: :unprocessable_entity }
+        format.json { render json: @dream_comment.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -26,12 +27,29 @@ class DreamCommentsController < ApplicationController
   end
 
   def edit
+    authorize @dream_comment
   end
 
   def update
+    authorize @dream_comment
+    respond_to do |format|
+      if @dream_comment.update(dream_comment_params)
+        format.html { redirect_to @dream_comment.dream, notice: 'Comment was successfully updated.' }
+        format.json { render :show, status: :ok, location: @dream_comment.dream }
+      else
+        format.html { render :edit }
+        format.json { render json: @dream_comment.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def destroy
+    authorize @dream_comment
+    @dream_comment.destroy
+    respond_to do |format|
+      format.html { redirect_to @dream, notice: 'Comment was successfully destroyed.' }
+      format.json { head :no_content }
+    end
   end
 
   protected
@@ -41,11 +59,11 @@ class DreamCommentsController < ApplicationController
   end
 
   def set_dream_comment
-    @dream_comment = DreamComment.where(id: params[:id])
+    @dream_comment = DreamComment.where(id: params[:id]).first
   end
 
-  def dream_comment_parrams
-    params.require(:dream_comment).permit(:content)
+  def dream_comment_params
+    params.require(:dream_comment).permit(:content, :dream_id)
   end
 
 

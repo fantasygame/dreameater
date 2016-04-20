@@ -1,9 +1,9 @@
 
-= simple_form_for(@dream_comment, :url => dream_dream_comments_path(dream_id: @dream.id), :html => { :method => :post }) do |f|
+= simple_form_for(@dream_comment) do |f|
   = f.error_notification
-
   .form-inputs
     = f.input :content
-
+    = f.hidden_field :dream_id, value: @dream.id
   .form-actions
     = f.button :submit
+
